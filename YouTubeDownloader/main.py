@@ -12,19 +12,20 @@ def get_download_path(word):
             location = winreg.QueryValueEx(key, downloads_guid)[0]
         return location
     else:
-        folder_name = str(input("Enter your folder name into DOWNLOADS folder: "))
+        folder_name = str(input("Enter your folder name: "))
         download_path = os.path.join(os.path.expanduser('~'))
         try:
             folder_path = download_path + '/' + word + '/' + folder_name
             os.mkdir(folder_path)
         except FileExistsError:
-            print("FILE ALREADY EXISTS")
+            print("FOLDER ALREADY EXISTS")
             sleep(1)
         return folder_path
 
 def download_vid(url, answ_PS):
     install_here = get_download_path("Videos")
     print("DOWNLOADING THE BEST AUDIO QUALITY...")
+    print(f"Your songs will be in {install_here}")
     if anws_PS == 'S':
         YouTube(url).streams.get_by_itag(137).download(install_here)
     elif anws_PS == 'P':
@@ -35,6 +36,7 @@ def download_vid(url, answ_PS):
 def download_aud(url, answ_PS):
     install_here = get_download_path("Music")
     print("DOWNLOADING THE BEST AUDIO QUALITY...")
+    print(f"Your songs will be in {install_here}")
     if anws_PS == 'S':
         YouTube(url).streams.get_by_itag(251).download(install_here)
     elif anws_PS == 'P':
@@ -44,13 +46,16 @@ def download_aud(url, answ_PS):
 
 def choose():
     while True:
-        anws_VA = str(input("WHAT DO YOU WANT TO DOWNLOAD: \nVIDEO [V] \nAUDIO [A]\n").upper())
+        anws_VA = str(input("WHAT DO YOU WANT TO DOWNLOAD: \nVIDEO [V] \nAUDIO [A] \
+                        \nQUIT  [Q]\n").upper())
         if anws_VA[0] == 'V' or anws_VA[0] == 'A':
             break
+        elif anws_VA == 'Q':
+            quit()
         else:
             print("Wrong input! Try again.")
             sleep(2)
-
+    os.system('clear')
     while True:
         anws_PS = str(input("WHAT DO YOU WANT TO DOWNLOAD: \nPLAYLIST [P] \nSINGLE [S]\n").upper())
         if anws_PS[0] == 'P' or anws_PS[0] == 'S':
@@ -63,7 +68,7 @@ def choose():
 if __name__ == "__main__":
     url = input("Enter the URL: ")
     anws_VA, anws_PS = choose()
-    
+    os.system('clear')
     if anws_VA == 'V':
         download_vid(url, anws_PS)
     elif anws_VA == 'A':
