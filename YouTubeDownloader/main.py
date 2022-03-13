@@ -22,10 +22,14 @@ def get_download_path(word):
             sleep(1)
         return folder_path
 
+def infos(inst):
+    print(f"Your songs will be in {inst}")
+    print("Wait some seconds")
+
 def download_vid(url, answ_PS):
     install_here = get_download_path("Videos")
-    print("DOWNLOADING THE BEST AUDIO QUALITY...")
-    print(f"Your songs will be in {install_here}")
+    print("DOWNLOADING THE BEST VIDEO QUALITY...")
+    infos(install_here)
     if anws_PS == 'S':
         YouTube(url).streams.get_by_itag(137).download(install_here)
     elif anws_PS == 'P':
@@ -36,7 +40,7 @@ def download_vid(url, answ_PS):
 def download_aud(url, answ_PS):
     install_here = get_download_path("Music")
     print("DOWNLOADING THE BEST AUDIO QUALITY...")
-    print(f"Your songs will be in {install_here}")
+    infos(install_here)
     if anws_PS == 'S':
         YouTube(url).streams.get_by_itag(251).download(install_here)
     elif anws_PS == 'P':
@@ -46,7 +50,7 @@ def download_aud(url, answ_PS):
 
 def choose():
     while True:
-        anws_VA = str(input("WHAT DO YOU WANT TO DOWNLOAD: \nVIDEO [V] \nAUDIO [A] \
+        anws_VA = str(input("What do You Want to Download: \nVIDEO [V] \nAUDIO [A] \
                         \nQUIT  [Q]\n").upper())
         if anws_VA[0] == 'V' or anws_VA[0] == 'A':
             break
@@ -57,7 +61,7 @@ def choose():
             sleep(2)
     os.system('clear')
     while True:
-        anws_PS = str(input("WHAT DO YOU WANT TO DOWNLOAD: \nPLAYLIST [P] \nSINGLE [S]\n").upper())
+        anws_PS = str(input("What do You Want to Download: \nPLAYLIST [P] \nSINGLE [S]\n").upper())
         if anws_PS[0] == 'P' or anws_PS[0] == 'S':
             break
         else:
