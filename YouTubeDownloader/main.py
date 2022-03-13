@@ -29,9 +29,8 @@ def download_vid(url, answ_PS):
         YouTube(url).streams.get_by_itag(137).download(install_here)
     elif anws_PS == 'P':
         playlist = Playlist(url)
-        playlist.video_urls
-        for video in playlist.videos:
-            YouTube(video).streams.get_by_itag(137).first().download(install_here)
+        for arq in playlist.videos:
+            arq.streams.get_by_itag(137).first().download(install_here)
 
 def download_aud(url, answ_PS):
     install_here = get_download_path("Music")
@@ -40,9 +39,8 @@ def download_aud(url, answ_PS):
         YouTube(url).streams.get_by_itag(251).download(install_here)
     elif anws_PS == 'P':
         playlist = Playlist(url)
-        playlist.video_urls
-        for video in playlist.videos:
-            YouTube(video).streams.get_by_itag(251).first().download(install_here)
+        for arq in playlist.videos:
+            arq.streams.get_by_itag(251).download(install_here)
 
 def choose():
     while True:
