@@ -6,13 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Youtube Downloader</title>
     <link rel="stylesheet" href="styles.css">
+
 </head>
 <body>
-    <form action="/login" method="post">
-        <div class="downloadc">
-            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="url" name="url" placeholder="URL" type="text">
+    <form action="/index" method="post">
+        <div class="download">
+            <input autocomplete="off" autofocus class="url" name="url" placeholder="URL" type="text">  
         </div>
     </form>
+    <div class="box">
+        <label for="playlist">Playlist</label>
+        <input type="checkbox" id="playlist" name="single" value="playlist">
+    </div>
+    <div class="box">  
+        <label for="single">Single</label> 
+        <input type="checkbox" id="single" nam  e="single" value="single">
+    </div>  
     <button type="button">Download</button> 
 </body>
 </html>
