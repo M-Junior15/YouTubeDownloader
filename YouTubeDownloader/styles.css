@@ -46,6 +46,9 @@ body {
 
 }
 button {
+  position: absolute;
+  left: 1070px;
+  top: 193px; 
   display: inline-block;
   background-color: #7b38d8;
   border-radius: 5px;
@@ -53,7 +56,7 @@ button {
   color: #eeeeee;
   text-align: center;
   font-size: 14px;
-  padding: 14px;
+  padding: 12px;
   width: 100px;
   transition: all 0.5s;
   cursor: pointer;
