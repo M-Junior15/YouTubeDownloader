@@ -33,30 +33,31 @@ body {
   color: white;
   width: 90px;
   height: 40px;
-  margin-top: 10px;
+  margin: 5px;
 
 }
 .box1 {
+  position: relative;
+  left: 105px;
+  top: -45px;
   color: white;
-  position: absolute;
-  left: 580px;
-  top: 254px;
   width: 90px;
   height: 40px;
+  margin: 5px;
 
 }
 button {
-  position: absolute;
-  left: 1070px;
-  top: 193px; 
-  display: inline-block;
+  position: relative;
+  left: 600px;
+  top: -140px;
+  display: flex;
   background-color: #7b38d8;
   border-radius: 5px;
   border: 4px double #cccccc;
   color: #eeeeee;
   text-align: center;
   font-size: 14px;
-  padding: 12px;
+  padding: 11px;
   width: 100px;
   transition: all 0.5s;
   cursor: pointer;
