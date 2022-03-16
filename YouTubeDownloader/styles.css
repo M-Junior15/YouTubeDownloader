@@ -2,12 +2,12 @@
 
 
 body {
-  background-color: #000000;
+  background-color: #FFFFF6;
   margin: 200px 34.4%;
 }
 
 .download {
-  background-color: #f5f4f4;
+  background-color: #363633;
   width: 600px;
   height: 44px;
   border-radius: 5px;
@@ -19,18 +19,18 @@ body {
 .url {
   all: unset;
   font: 16px system-ui;
-  color: rgb(14, 13, 13);
+  color: #FFFFF6;
   height: 100%;
   width: 100%;
   padding: 6px 10px;
 }
 
 ::placeholder {
-  color: rgb(0, 0, 0);
+  color: #FFFFF6;
 }
 
 .box {
-  color: white;
+  color: #363633;
   width: 90px;
   height: 40px;
   margin: 5px;
@@ -40,7 +40,7 @@ body {
   position: relative;
   left: 105px;
   top: -45px;
-  color: white;
+  color: #363633;
   width: 90px;
   height: 40px;
   margin: 5px;
@@ -51,7 +51,7 @@ button {
   left: 600px;
   top: -140px;
   display: flex;
-  background-color: #7b38d8;
+  background-color: #363633;
   border-radius: 5px;
   border: 4px double #cccccc;
   color: #eeeeee;
@@ -78,7 +78,7 @@ button span:after {
   transition: 0.5s;
 }
 button:hover {
-  background-color: #f7c2f9;
+  background-color: #646464;
 }
 button:hover span {
   padding-right: 25px;
