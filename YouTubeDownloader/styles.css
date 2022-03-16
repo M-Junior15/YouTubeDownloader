@@ -78,7 +78,7 @@ button span:after {
   transition: 0.5s;
 }
 button:hover {
-  background-color: #646464;
+  background-color: #696969;
 }
 button:hover span {
   padding-right: 25px;
