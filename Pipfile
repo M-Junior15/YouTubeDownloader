@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 pytube = "*"
 fastapi = "*"
+jinja2 = "*"
+flask = "*"
 
 [dev-packages]
 

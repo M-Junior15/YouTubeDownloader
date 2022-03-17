@@ -1,6 +1,10 @@
 import os
 from pytube import YouTube, Playlist
 from time import sleep
+from flask import Flask, render_template, request
+
+
+app = Flask(__name__)
 
 # Function to get the download path
 def get_download_path(word):
@@ -57,7 +61,8 @@ def download_aud(url, answ_PS):
     # Download a playlist of audios
     elif anws_PS == 'P':
         playlist = Playlist(url)
-        for arq in playlist.videos: arq.streams.get_by_itag(251).download(install_here)
+        for arq in playlist.videos: 
+            arq.streams.get_by_itag(251).download(install_here)
 
 # Function to choose some options
 def choose():
@@ -83,8 +88,19 @@ def choose():
             sleep(2)
     return anws_VA, anws_PS
 
+
+@app.route("/", methods=["POST", "GET"])
+def index():
+    if request.method == "POST":
+        pass
+    else:
+        return render_template("index.html")   
+
+
 # The main program
 if __name__ == "__main__":
+    app.run()
+    
     # Ask for the URL
     url = input("Enter the URL: ")
 
