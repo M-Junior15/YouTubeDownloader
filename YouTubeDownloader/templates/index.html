@@ -11,25 +11,38 @@
     <form action="/" method="post">
         <div>
             <div class="download">
-                <input autocomplete="off" autofocus class="url" name="url" placeholder="URL" type="text">  
+                <input autocomplete="off" autofocus class="url" id="url" name="url" placeholder="URL" type="text">  
             </div>
             <div class="box">
-                <input type="checkbox" id="playlist" name="download" value="playlist">
+                <input type="checkbox" id="playlist" name="download" value="playlist" onclick="checkplay()" >
                 <label for="playlist">Playlist</label>
                     
-                <input type="checkbox" id="single" name="download" value="single">
+                <input type="checkbox" id="single" name="download" value="single" onclick="checksing()" >
                 <label for="single">Single</label> 
             </div> 
             <div class="box1">
-                <input type="checkbox" id="video" name="download" value="video">
+                <input type="checkbox" id="video" name="download" value="video" onclick="checkvideo()">
                 <label for="video">Video</label>
                     
-                <input type="checkbox" id="audio" name="download" value="audio">
+                <input type="checkbox" id="audio" name="download" value="audio" onclick="checkaudio()">
                 <label for="audio">Audio</label> 
             </div>
-            <button type="button">Download</button> 
+            <button type="button" id="button" onclick="downloadUrl">Download</button> 
         </div>
     </form>
-
+    <script>
+        function checkplay(){
+            document.getElementById("single").checked = false
+        }
+        function checksing(){
+            document.getElementById("playlist").checked = false
+        }
+        function checkvideo(){
+            document.getElementById("audio").checked = false
+        }
+        function checkaudio(){
+            document.getElementById("video").checked = false
+        }
+    </script>
 </body>
 </html>

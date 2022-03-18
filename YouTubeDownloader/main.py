@@ -1,7 +1,7 @@
 import os
 from pytube import YouTube, Playlist
 from time import sleep
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, Response
 
 
 app = Flask(__name__)
@@ -92,7 +92,8 @@ def choose():
 @app.route("/", methods=["POST", "GET"])
 def index():
     if request.method == "POST":
-        pass
+        if request.form.get("url"):
+            pass
     else:
         return render_template("index.html")   
 
