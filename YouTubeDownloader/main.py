@@ -1,9 +1,10 @@
 import os
-from anyio import fail_after
-from pytube import YouTube, Playlist
+
 from time import sleep
-from flask import Flask, render_template, request
-from flask_http_response import success, result, error
+from pytube import YouTube, Playlist
+from http_exceptions import HTTPException
+from flask import Flask, abort, redirect, render_template, request
+
 
 app = Flask(__name__)
 
@@ -26,7 +27,6 @@ def get_download_path(word):
             folder_path = download_path + '/' + word 
             os.mkdir(folder_path)
         except FileExistsError:
-            print("FOLDER ALREADY EXISTS")
             sleep(1)
     return folder_path
 
@@ -69,11 +69,14 @@ def index():
         answ_PS = request.form['choosePS']
         answ_VA = request.form['chooseVA']
 
+        if not url or answ_PS or answ_VA:
+            raise HTTPException.from_status_code(status_code=406)(message="ERROR")
+
         if 'submit_button' in request.form:
             choose(url, answ_PS, answ_VA)
+        return redirect("/")
     else:
         return render_template('index.html')   
-
 
 # The main program
 if __name__ == "__main__":
