@@ -20,46 +20,35 @@ def get_download_path(word):
         return location
     # Download path for linux
     else:
-        # Ask for a folder to download the file
-        folder_name = input("Enter your folder name: ")
         download_path = os.path.join(os.path.expanduser('~'))
         # Try to download the file in the given path
         try:
-            folder_path = download_path + '/' + word + '/' + folder_name
+            folder_path = download_path + '/' + word 
             os.mkdir(folder_path)
         except FileExistsError:
             print("FOLDER ALREADY EXISTS")
             sleep(1)
     return folder_path
 
-# Function to print some information
-def infos(inst):
-    print(f"Your songs will be in {inst}")
-    print("Wait some seconds")
-
 # Function to download video
 def download_vid(url, answ_PS):
     install_here = get_download_path("Videos")
-    print(install_here)
-    print("DOWNLOADING THE BEST VIDEO QUALITY...")
-    infos(install_here)
     # Download a single video
-    if anws_PS == 'S':
+    if answ_PS == 'S':
         YouTube(url).streams.get_by_itag(137).download(install_here)
     # Download a playlist of videos
-    elif anws_PS == 'P':
+    elif answ_PS == 'P':
         playlist = Playlist(url)
         for arq in playlist.videos: arq.streams.get_by_itag(137).first().download(install_here)
 
 # Function to download audio
 def download_aud(url, answ_PS):
     install_here = get_download_path("Music")
-    infos(install_here)
     # Download a single audio
-    if anws_PS == 'S':
+    if answ_PS == 'S':
         YouTube(url).streams.get_by_itag(251).download(install_here)
     # Download a playlist of audios
-    elif anws_PS == 'P':
+    elif answ_PS == 'P':
         playlist = Playlist(url)
         for arq in playlist.videos: 
             arq.streams.get_by_itag(251).download(install_here)
@@ -72,8 +61,6 @@ def choose(url, answ_PS, answ_VA):
     # If the option is audio
     elif answ_VA == 'A':
         download_aud(url, answ_PS)
-
-
 
 @app.route("/", methods=["POST", "GET"])
 def index():
@@ -91,8 +78,3 @@ def index():
 # The main program
 if __name__ == "__main__":
     app.run()
-    
-
-    # Function return two values
-    answ_VA, answ_PS = choose()
-    os.system('clear')
