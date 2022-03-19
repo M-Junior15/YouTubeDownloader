@@ -1,8 +1,9 @@
 import os
+from anyio import fail_after
 from pytube import YouTube, Playlist
 from time import sleep
-from flask import Flask, render_template, request, Response
-
+from flask import Flask, render_template, request
+from flask_http_response import success, result, error
 
 app = Flask(__name__)
 
@@ -53,7 +54,6 @@ def download_vid(url, answ_PS):
 # Function to download audio
 def download_aud(url, answ_PS):
     install_here = get_download_path("Music")
-    print("DOWNLOADING THE BEST AUDIO QUALITY...")
     infos(install_here)
     # Download a single audio
     if anws_PS == 'S':
@@ -65,53 +65,34 @@ def download_aud(url, answ_PS):
             arq.streams.get_by_itag(251).download(install_here)
 
 # Function to choose some options
-def choose():
-    # Choose between audio or video
-    while True:
-        anws_VA = str(input("What do You Want to Download: \nVIDEO [V] \nAUDIO [A] \
-                        \nQUIT  [Q]\n").upper())
-        if anws_VA[0] == 'V' or anws_VA[0] == 'A':
-            break
-        elif anws_VA == 'Q':
-            quit()
-        else:
-            print("Wrong input! Try again.")
-            sleep(2)
-    os.system('clear')
-    # Choose between single file or a playlist
-    while True:
-        anws_PS = str(input("What do You Want to Download: \nPLAYLIST [P] \nSINGLE [S]\n").upper())
-        if anws_PS[0] == 'P' or anws_PS[0] == 'S':
-            break
-        else:
-            print("Wrong input! Try again.")
-            sleep(2)
-    return anws_VA, anws_PS
+def choose(url, answ_PS, answ_VA):
+    # If the option is video
+    if answ_VA == 'V':
+        download_vid(url, answ_PS)
+    # If the option is audio
+    elif answ_VA == 'A':
+        download_aud(url, answ_PS)
+
 
 
 @app.route("/", methods=["POST", "GET"])
 def index():
-    if request.method == "POST":
-        if request.form.get("url"):
-            pass
+    if request.method == 'POST':
+        url = request.form.get('url')
+        answ_PS = request.form['choosePS']
+        answ_VA = request.form['chooseVA']
+
+        if 'submit_button' in request.form:
+            choose(url, answ_PS, answ_VA)
     else:
-        return render_template("index.html")   
+        return render_template('index.html')   
 
 
 # The main program
 if __name__ == "__main__":
     app.run()
     
-    # Ask for the URL
-    url = input("Enter the URL: ")
 
     # Function return two values
-    anws_VA, anws_PS = choose()
+    answ_VA, answ_PS = choose()
     os.system('clear')
-
-    # If the option is video
-    if anws_VA == 'V':
-        download_vid(url, anws_PS)
-    # If the option is audio
-    elif anws_VA == 'A':
-        download_aud(url, anws_PS)
