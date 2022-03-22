@@ -13,7 +13,7 @@ body {
   align-items:center;
 }
 
-.urlandfolder {
+.url {
   all: unset;
   font: 15px system-ui;
   color: #FFFFF6;
@@ -37,6 +37,15 @@ body {
   flex-direction:row; 
   align-items:center;
   margin: 5px;
+}
+
+.foldername {
+  all: unset;
+  font: 15px system-ui;
+  color: #FFFFF6;
+  height: 100%;
+  width: 100%;
+  padding: 6px 10px;
 }
 
 .box {
