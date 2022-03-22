@@ -24,7 +24,7 @@ def get_download_path(word):
         download_path = os.path.join(os.path.expanduser('~'))
         # Try to download the file in the given path
         try:
-            folder_path = download_path + '/' + word 
+            folder_path = download_path + '/' + word + '/' + folder_name
             os.mkdir(folder_path)
         except FileExistsError:
             sleep(1)
@@ -66,10 +66,20 @@ def choose(url, answ_PS, answ_VA):
 def index():
     if request.method == 'POST':
         url = request.form.get('url')
+
+        global folder_name
+        folder_name = request.form.get('foldername')
+
         answ_PS = request.form['choosePS']
         answ_VA = request.form['chooseVA']
 
-        if not url or answ_PS or answ_VA:
+        if not url:
+            raise HTTPException.from_status_code(status_code=406)(message="ERROR")
+        elif not folder_name:
+            raise HTTPException.from_status_code(status_code=406)(message="ERROR")
+        elif not answ_PS:
+            raise HTTPException.from_status_code(status_code=406)(message="ERROR")
+        elif not answ_VA:
             raise HTTPException.from_status_code(status_code=406)(message="ERROR")
 
         if 'submit_button' in request.form:
