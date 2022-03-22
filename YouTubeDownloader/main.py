@@ -67,6 +67,7 @@ def index():
     if request.method == 'POST':
         url = request.form.get('url')
 
+        # Turn FOLDER_NAME into global to use in the function GET_DOWNLOAD_PATH
         global folder_name
         folder_name = request.form.get('foldername')
 
@@ -82,9 +83,12 @@ def index():
         elif not answ_VA:
             raise HTTPException.from_status_code(status_code=406)(message="ERROR")
 
+        # Call the function to choose between PLAYLIST OR SINGLE or VIDEO OR AUDIO
         if 'submit_button' in request.form:
             choose(url, answ_PS, answ_VA)
         return redirect("/")
+    
+    # Return the site base template
     else:
         return render_template('index.html')   
 
