@@ -13,9 +13,9 @@ body {
   align-items:center;
 }
 
-.url {
+.urlandfolder {
   all: unset;
-  font: 16px system-ui;
+  font: 15px system-ui;
   color: #FFFFF6;
   height: 100%;
   width: 100%;
@@ -26,7 +26,22 @@ body {
   color: #FFFFF6;
 }
 
+.folderpath {
+  background-color: #363633;
+  position: relative;
+  left: 150px;
+  width: 300px;
+  height: 44px;
+  border-radius: 5px;
+  display:flex;
+  flex-direction:row; 
+  align-items:center;
+  margin: 5px;
+}
+
 .box {
+  position: relative;
+  left: 148px;
   color: #363633;
   width: 90px;
   height: 40px;
@@ -35,7 +50,7 @@ body {
 }
 .box1 {
   position: relative;
-  left: 105px;
+  left: 383px;
   top: -45px;
   color: #363633;
   width: 90px;
@@ -46,7 +61,7 @@ body {
 button {
   position: relative;
   left: 600px;
-  top: -140px;
+  top: -189px;
   display: flex;
   background-color: #363633;
   border-radius: 5px;
